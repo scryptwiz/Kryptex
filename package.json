@@ -1,5 +1,6 @@
 {
-  "name": "password-manager",
+  "name": "Kryptex",
+  "description": "Kryptex is a zero-knowledge, end-to-end encrypted password and recovery key manager.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +10,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^7.2.1",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4"
