@@ -89,9 +89,8 @@ export default function LandingPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.1 }}
                 >
-                  Structural integrity for your digital life. Encryption terminates
-                  at the edge — your device — so credentials and recovery material
-                  never exist as plaintext on our systems.
+                  A calm place for passwords and recovery codes. Built to stay out
+                  of your way so you can save what matters and move on.
                 </motion.p>
                 <motion.div
                   className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap lg:justify-start"
@@ -135,12 +134,11 @@ export default function LandingPage() {
                     monolithAccent.line
                   )}
                 >
-                  Absolute privacy
+                  Your space
                 </h2>
                 <p className="mt-6 text-sm leading-relaxed text-white/55 sm:text-base">
-                  Zero-knowledge architecture means we cannot decrypt your vault
-                  — by design. What you store is opaque ciphertext tied to your
-                  identity, not readable by operators or databases alone.
+                  Keep passwords and important codes together in one simple
+                  workspace—without clutter or noise.
                 </p>
                 <ul className="mt-10 space-y-6">
                   <li className="flex gap-4">
@@ -148,9 +146,9 @@ export default function LandingPage() {
                       <Shield className="size-5 text-white/70" strokeWidth={1.25} />
                     </span>
                     <div>
-                      <p className="font-medium text-white">Zero-knowledge proofs</p>
+                      <p className="font-medium text-white">Straightforward</p>
                       <p className="mt-1 text-sm text-white/50">
-                        Server-side logic never requires plaintext secrets.
+                        Clear steps and a calm layout so you can move quickly.
                       </p>
                     </div>
                   </li>
@@ -159,9 +157,9 @@ export default function LandingPage() {
                       <EyeOff className="size-5 text-white/70" strokeWidth={1.25} />
                     </span>
                     <div>
-                      <p className="font-medium text-white">Blind infrastructure</p>
+                      <p className="font-medium text-white">Stay organized</p>
                       <p className="mt-1 text-sm text-white/50">
-                        Storage and APIs handle blobs and metadata — not your keys.
+                        Keep passwords and recovery details in one structured place.
                       </p>
                     </div>
                   </li>
@@ -178,10 +176,10 @@ export default function LandingPage() {
           >
             <div className="mx-auto max-w-6xl">
               <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-white/40 sm:text-xs">
-                Technical specifications // Layer 1 integration
+                Product
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-                Architectural security
+                Built for everyday use
               </h2>
 
               <div className="mt-12 grid gap-3 sm:gap-4 md:grid-cols-2">
@@ -194,15 +192,14 @@ export default function LandingPage() {
                 >
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
-                      Core engine
+                      Overview
                     </p>
                     <h3 className="mt-3 text-xl font-semibold text-white sm:text-2xl">
-                      Obsidian core protocol
+                      A focused vault
                     </h3>
                     <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/50">
-                      AES-256-GCM in the browser, Argon2id for key derivation, and
-                      authenticated additional data binding every ciphertext to its
-                      owner.
+                      Save passwords and recovery information with a layout that
+                      stays readable at a glance.
                     </p>
                   </div>
                   <div className="mt-8 space-y-2">
@@ -216,7 +213,7 @@ export default function LandingPage() {
                       />
                     </div>
                     <p className="text-[10px] uppercase tracking-wider text-white/35">
-                      Integrity stream active
+                      Ready when you are
                     </p>
                   </div>
                 </motion.article>
@@ -232,11 +229,11 @@ export default function LandingPage() {
                     <Network className="size-5 text-white/65" strokeWidth={1.25} />
                   </div>
                   <h3 className="mt-4 text-lg font-semibold text-white">
-                    Decentralized storage
+                    Reliable access
                   </h3>
                   <p className="mt-2 text-sm text-white/50">
-                    Encrypted shards across resilient infrastructure — no single
-                    plaintext vault file.
+                    Reach your saved items whenever you sign in, from the devices you
+                    trust.
                   </p>
                 </motion.article>
 
@@ -251,11 +248,11 @@ export default function LandingPage() {
                     <KeyRound className="size-5 text-white/65" strokeWidth={1.25} />
                   </div>
                   <h3 className="mt-4 text-lg font-semibold text-white">
-                    Immutable access
+                    Simple controls
                   </h3>
                   <p className="mt-2 text-sm text-white/50">
-                    Session-verified APIs and append-only audit trails for
-                    accountability.
+                    Lock, copy, and update entries without digging through complex
+                    menus.
                   </p>
                 </motion.article>
 
@@ -268,14 +265,14 @@ export default function LandingPage() {
                 >
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
-                      Infrastructure
+                      Experience
                     </p>
                     <h3 className="mt-2 text-lg font-semibold text-white sm:text-xl">
-                      Global monolith network
+                      One consistent workspace
                     </h3>
                     <p className="mt-2 max-w-2xl text-sm text-white/50">
-                      Edge-aligned auth, strict transport, and policy-bound data
-                      planes — one coherent security posture end to end.
+                      The same quiet look from browsing the site to signing in and
+                      using your vault—so everything feels connected.
                     </p>
                   </div>
                   <div className="mt-6 flex size-12 shrink-0 items-center justify-center rounded-full border border-white/15 sm:mt-0">
@@ -303,7 +300,7 @@ export default function LandingPage() {
                 Legal
               </Link>
               <Link href="#" className="no-underline transition-colors hover:text-white/70">
-                Security audit
+                Help
               </Link>
             </nav>
           </div>

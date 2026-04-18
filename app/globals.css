@@ -254,6 +254,65 @@
     linear-gradient(to bottom, oklch(0.13 0.02 250), oklch(0.11 0.02 250));
 }
 
+/* Vault app shell — monochrome (aligned with marketing monolith) */
+.vault-monolith-root {
+  --background: oklch(0.06 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.10 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.10 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.16 0 0);
+  --muted-foreground: oklch(0.52 0 0);
+  --secondary: oklch(0.14 0 0);
+  --secondary-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.94 0 0);
+  --primary-foreground: oklch(0.08 0 0);
+  --accent: oklch(0.16 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(1 0 0 / 0.1);
+  --ring: oklch(0.72 0 0);
+  --destructive: oklch(0.62 0 0);
+  --sidebar: oklch(0.08 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.94 0 0);
+  --sidebar-primary-foreground: oklch(0.08 0 0);
+  --sidebar-accent: oklch(0.14 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.08);
+  --sidebar-ring: oklch(0.72 0 0);
+}
+
+.vault-monolith-root ::selection {
+  background: oklch(1 0 0 / 0.2);
+  color: oklch(0.98 0 0);
+}
+
+/* Match marketing monolith — neutral glass, no indigo tint */
+.vault-monolith-root .glass-card {
+  background: oklch(0.10 0 0 / 0.72);
+  border: 1px solid oklch(1 0 0 / 0.08);
+  box-shadow: none;
+  /* Align with Clerk SignIn card (`rounded-xl` ≈ 0.75rem), not global --radius-xl */
+  border-radius: 0.75rem;
+}
+
+.vault-monolith-root .glass-card-elevated {
+  background: oklch(0.12 0 0 / 0.78);
+  border: 1px solid oklch(1 0 0 / 0.1);
+  border-radius: 0.75rem;
+  box-shadow:
+    0 0 0 1px oklch(1 0 0 / 0.03),
+    0 8px 32px -8px oklch(0 0 0 / 0.45);
+}
+
+.vault-monolith-root .glow-ring-subtle {
+  box-shadow:
+    0 0 0 1px oklch(1 0 0 / 0.08),
+    0 0 20px -6px oklch(1 0 0 / 0.06);
+}
+
 .bg-auth-gradient {
   background:
     radial-gradient(ellipse 100% 80% at 20% 10%, oklch(0.65 0.25 270 / 0.12), transparent),

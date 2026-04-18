@@ -53,15 +53,15 @@ export function MonolithHeader({ variant = "landing" }: { variant?: MonolithHead
               href="/vault"
               className="hidden text-xs font-medium uppercase tracking-wider text-white/60 no-underline transition-colors hover:text-white sm:inline"
             >
-              Vault
+              Passwords
             </Link>
             <UserButton
               appearance={{
                 variables: {
                   colorPrimary: "#ffffff",
-                  colorText: "#ffffff",
+                  colorForeground: "#ffffff",
                   colorBackground: "#0a0a0a",
-                  colorTextSecondary: "rgba(255,255,255,0.55)",
+                  colorMutedForeground: "rgba(255,255,255,0.55)",
                 },
                 elements: {
                   avatarBox: "size-8 ring-1 ring-white/10",

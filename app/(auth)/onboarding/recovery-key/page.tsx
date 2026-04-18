@@ -76,8 +76,8 @@ export default function RecoveryKeyOnboardingPage() {
       >
         <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[oklch(0.78_0.16_70)]" />
         <p className="text-xs leading-relaxed text-[oklch(0.78_0.16_70)]">
-          This key will only be shown once. It is never stored in plaintext.
-          Write it down or save it in a secure offline location now.
+          You will only see this once. Save it somewhere safe and offline before
+          you continue.
         </p>
       </motion.div>
 
@@ -90,7 +90,7 @@ export default function RecoveryKeyOnboardingPage() {
       >
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span className="font-medium">Recovery key (example only)</span>
-          <span className="text-[10px]">Displayed once · never stored</span>
+          <span className="text-[10px]">Shown once</span>
         </div>
 
         {/* Key blocks grid */}

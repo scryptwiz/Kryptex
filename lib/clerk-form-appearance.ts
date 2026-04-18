@@ -3,7 +3,11 @@
 /** 0.375rem (6px) — matches `variables.borderRadius`; use on marketing auth tabs too. */
 export const AUTH_CONTROL_RADIUS = "rounded-[0.375rem]";
 
+/** ~12px — matches Clerk `elements.card` (`rounded-xl`); use for main auth / vault panels. */
+export const AUTH_CARD_RADIUS = "rounded-[0.75rem]";
+
 const CLERK_CONTROL_RADIUS = `!${AUTH_CONTROL_RADIUS}`;
+const CLERK_CARD_RADIUS = `!${AUTH_CARD_RADIUS}`;
 
 export const clerkFormAppearance = {
   layout: {
@@ -15,18 +19,17 @@ export const clerkFormAppearance = {
     colorSuccess: "#e5e5e5",
     colorWarning: "#fde68a",
     colorNeutral: "rgba(255,255,255,0.65)",
-    colorText: "#ffffff",
-    colorTextOnPrimaryBackground: "#0a0a0a",
-    colorTextSecondary: "rgba(255,255,255,0.78)",
+    colorForeground: "#ffffff",
+    colorPrimaryForeground: "#0a0a0a",
+    colorMutedForeground: "rgba(255,255,255,0.78)",
     colorBackground: "#000000",
-    colorInputBackground: "#0a0a0a",
-    colorInputText: "#ffffff",
+    colorInput: "#0a0a0a",
+    colorInputForeground: "#ffffff",
     borderRadius: "0.375rem",
   },
   elements: {
     rootBox: cnRootBox(),
-    card:
-      "w-full max-w-none rounded-xl !border-white/42 bg-neutral-950/50 p-0 shadow-none backdrop-blur-[2px] text-white",
+    card: `w-full max-w-none ${CLERK_CARD_RADIUS} !border-white/42 bg-neutral-950/50 p-0 shadow-none backdrop-blur-[2px] text-white`,
     headerTitle: "text-xl font-semibold tracking-tight text-white",
     headerSubtitle: "text-sm text-white/75",
 
@@ -82,21 +85,7 @@ export const clerkFormAppearance = {
 
 /** Tailwind-only strings split for readability */
 function cnRootBox() {
-  return [
-    "w-full min-w-0 max-w-full text-white",
-    /* Clerk “or” divider — hairline only, no thick theme borders */
-    "[&_.cl-dividerLine]:!m-0 [&_.cl-dividerLine]:!block [&_.cl-dividerLine]:!h-px [&_.cl-dividerLine]:!min-h-px",
-    "[&_.cl-dividerLine]:!flex-1 [&_.cl-dividerLine]:!border-0 [&_.cl-dividerLine]:!bg-white/22",
-    "[&_.cl-dividerLine]:shadow-none",
-    "[&_.cl-dividerRow]:!m-0 [&_.cl-dividerRow]:!my-0 [&_.cl-dividerRow]:!py-0 [&_.cl-dividerRow]:!border-0",
-    "[&_.cl-dividerRow]:flex [&_.cl-dividerRow]:w-full [&_.cl-dividerRow]:items-center [&_.cl-dividerRow]:gap-2",
-    "[&_.cl-dividerRow]:text-white/45",
-    /* Collapse wrapper spacing around socials / divider / first field */
-    "[&_.cl-socialButtonsRoot]:!mb-0 [&_.cl-socialButtons]:!mb-0",
-    "[&_.cl-dividerRow+*]:!mt-0",
-    /* OAuth buttons — backup targets when appearance slots merge away utilities */
-    ...cnRootSocialButtonSelectors(),
-  ].join(" ");
+  return "w-full min-w-0 max-w-full text-white";
 }
 
 function cnSocialButton() {
@@ -107,26 +96,6 @@ function cnSocialButton() {
     "!transition-colors hover:!border-white/32 hover:!bg-white/[0.05]",
     "focus-visible:!border-white/42 focus-visible:!shadow-[0_0_0_2px_rgba(255,255,255,0.08)]",
   ].join(" ");
-}
-
-/**
- * Descendant selectors from rootBox so utilities apply even when Clerk merges away
- * direct `socialButtonsBlockButton` / `socialButtonsIconButton` class strings.
- */
-function cnRootSocialButtonSelectors() {
-  /* Substring match: Clerk uses `cl-socialButtonsBlockButton__google` etc. on the same node. */
-  const b = "[&_[class*='cl-socialButtonsBlockButton']]";
-  const i = "[&_[class*='cl-socialButtonsIconButton']]";
-  return [
-    `${b}:!flex ${b}:!w-full ${b}:!min-h-[2.5rem] ${b}:!items-center ${b}:!justify-center ${b}:!gap-3 ${b}:${CLERK_CONTROL_RADIUS}`,
-    `${b}:!border ${b}:!border-white/20 ${b}:!bg-neutral-950 ${b}:!px-3 ${b}:!py-2 ${b}:!shadow-none`,
-    `${b}:!text-[15px] ${b}:!font-semibold ${b}:!text-white`,
-    `${b}:hover:!border-white/32 ${b}:hover:!bg-white/[0.05]`,
-    `${b}:focus-visible:!border-white/42 ${b}:focus-visible:!shadow-[0_0_0_2px_rgba(255,255,255,0.08)]`,
-    `${i}:!flex ${i}:!items-center ${i}:!justify-center ${i}:${CLERK_CONTROL_RADIUS} ${i}:!border ${i}:!border-white/20 ${i}:!bg-neutral-950 ${i}:!shadow-none`,
-    `${i}:hover:!border-white/32 ${i}:hover:!bg-white/[0.05]`,
-    `${i}:focus-visible:!border-white/42 ${i}:focus-visible:!shadow-[0_0_0_2px_rgba(255,255,255,0.08)]`,
-  ];
 }
 
 function cnInput() {

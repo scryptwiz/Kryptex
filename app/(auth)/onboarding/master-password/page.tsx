@@ -75,8 +75,8 @@ export default function MasterPasswordOnboardingPage() {
           Create your master password
         </h1>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          This is the only password you need to remember. It never leaves your
-          device and cannot be recovered if lost.
+          This is the main password for your vault. Choose something strong and
+          unique—if you forget it, we cannot reset it for you.
         </p>
       </motion.header>
 

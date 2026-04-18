@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
+import { ui } from "@clerk/ui";
+import { dark } from "@clerk/ui/themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({
@@ -18,16 +19,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kryptex — Zero-Knowledge Password Vault",
-  description:
-    "Kryptex keeps your passwords, recovery keys, and secrets encrypted entirely in your browser. The server never sees your master password or decrypted data.",
-  keywords: [
-    "password manager",
-    "zero knowledge",
-    "encrypted vault",
-    "end-to-end encryption",
-    "security",
-  ],
+  title: "Kryptex",
+  description: "A calm place for your passwords and important keys.",
+  keywords: ["password manager", "passwords", "vault", "privacy", "security"],
 };
 
 export default function RootLayout({
@@ -39,18 +33,20 @@ export default function RootLayout({
     <html
       lang="en"
       className={`dark ${inter.variable} ${jetbrainsMono.variable}`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
         <ClerkProvider
+          ui={ui}
           afterSignOutUrl="/landing"
           appearance={{
-            baseTheme: dark,
+            theme: dark,
             variables: {
               colorPrimary: "hsl(250, 80%, 65%)",
               colorBackground: "hsl(222, 47%, 8%)",
-              colorInputBackground: "hsl(222, 35%, 11%)",
-              colorText: "hsl(210, 40%, 93%)",
+              colorInput: "hsl(222, 35%, 11%)",
+              colorForeground: "hsl(210, 40%, 93%)",
               borderRadius: "0.75rem",
             },
           }}

@@ -14,17 +14,17 @@ const badgeConfig: Record<
 > = {
   aes: {
     icon: Shield,
-    label: "AES-256-GCM",
+    label: "Protected",
     color: "text-[oklch(0.72_0.19_155)] bg-[oklch(0.72_0.19_155_/_0.1)]",
   },
   e2ee: {
     icon: Lock,
-    label: "End-to-End Encrypted",
+    label: "Locked down",
     color: "text-[oklch(0.72_0.14_230)] bg-[oklch(0.72_0.14_230_/_0.1)]",
   },
   "zero-knowledge": {
     icon: Fingerprint,
-    label: "Zero-Knowledge",
+    label: "Yours only",
     color: "text-primary bg-primary/10",
   },
 };

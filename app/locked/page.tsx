@@ -15,19 +15,18 @@ export default function LockedPage() {
       {/* Background decoration */}
       <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.03] blur-[120px]" />
 
-      {/* Floating encrypted data particles (CSS-only) */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
+      <div className="absolute inset-0 overflow-hidden opacity-[0.12]" aria-hidden>
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute font-mono text-[10px] text-primary/30"
+            className="absolute size-1 rounded-full bg-primary/40"
             style={{
               left: `${15 + i * 15}%`,
               top: `${10 + (i % 3) * 30}%`,
             }}
             animate={{
               y: [-20, 20, -20],
-              opacity: [0.1, 0.3, 0.1],
+              opacity: [0.15, 0.45, 0.15],
             }}
             transition={{
               duration: 5 + i,
@@ -35,9 +34,7 @@ export default function LockedPage() {
               delay: i * 0.5,
               ease: "easeInOut",
             }}
-          >
-            {["0x4F...9A", "AES256", "SHA-256", "E2EE", "HMAC", "GCM"][i]}
-          </motion.div>
+          />
         ))}
       </div>
 
@@ -85,8 +82,8 @@ export default function LockedPage() {
                   Vault locked
                 </h1>
                 <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-                  For your security, the in-memory vault key was wiped after
-                  inactivity. Enter your master password to continue.
+                  You were signed out after a period of inactivity. Enter your
+                  master password to continue.
                 </p>
               </div>
             </div>
@@ -137,14 +134,6 @@ export default function LockedPage() {
       </motion.div>
 
       {/* Footer */}
-      <motion.p
-        className="relative z-10 mt-6 text-center text-[11px] text-muted-foreground/50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7, duration: 0.4 }}
-      >
-        Unlock attempts, successful and failed, are logged in the audit trail.
-      </motion.p>
     </div>
   );
 }

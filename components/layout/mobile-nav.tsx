@@ -2,15 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Shield,
-  KeyRound,
-  Activity,
-  Settings2,
-  LayoutDashboard,
-  LockKeyhole,
-  Menu,
-} from "lucide-react";
+import { KeyRound, LockKeyhole, Menu } from "lucide-react";
+import { AUTH_CONTROL_RADIUS } from "@/lib/clerk-form-appearance";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,13 +15,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 
-const links = [
-  { href: "/vault", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/vault/items", label: "Items", icon: KeyRound },
-  { href: "/vault/security", label: "Security", icon: Shield },
-  { href: "/vault/activity", label: "Activity", icon: Activity },
-  { href: "/settings", label: "Settings", icon: Settings2 },
-];
+const links = [{ href: "/vault", label: "Passwords", icon: KeyRound }];
 
 export function MobileNav() {
   const pathname = usePathname();
@@ -40,7 +27,7 @@ export function MobileNav() {
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full text-muted-foreground hover:text-foreground lg:hidden"
+            className="rounded-full text-white/50 hover:bg-white/[0.06] hover:text-white lg:hidden"
             aria-label="Open navigation"
           />
         }
@@ -50,21 +37,24 @@ export function MobileNav() {
 
       <SheetContent
         side="left"
-        className="w-72 border-r border-border/20 bg-[oklch(0.12_0.02_250)] p-0"
+        className="w-72 border-r border-white/[0.08] bg-neutral-950 p-0"
       >
-        <SheetHeader className="border-b border-border/20 px-5 py-5">
+        <SheetHeader className="border-b border-white/[0.06] px-5 py-5">
           <div className="flex items-center gap-3">
-            <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10">
-              <Shield className="h-4 w-4 text-primary" />
-              <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-[oklch(0.12_0.02_250)] bg-[oklch(0.72_0.19_155)]" />
+            <div
+              className={cn(
+                "relative flex h-9 w-9 shrink-0 items-center justify-center border border-white/10 bg-white/[0.03]",
+                AUTH_CONTROL_RADIUS
+              )}
+            >
+              <KeyRound className="h-4 w-4 text-white/80" strokeWidth={1.25} />
+              <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full border-2 border-neutral-950 bg-white/90" />
             </div>
             <div>
-              <SheetTitle className="text-sm font-semibold tracking-tight text-foreground">
+              <SheetTitle className="text-sm font-semibold tracking-tight text-white">
                 Kryptex
               </SheetTitle>
-              <p className="text-[11px] text-muted-foreground">
-                Vault unlocked
-              </p>
+              <p className="text-[11px] text-white/45">Signed in</p>
             </div>
           </div>
         </SheetHeader>
@@ -79,17 +69,19 @@ export function MobileNav() {
               <SheetClose key={item.href} render={<Link href={item.href} />}>
                 <div
                   className={cn(
-                    "flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-all duration-200",
+                    "flex items-center gap-3 px-3 py-3 text-sm font-medium transition-all duration-200",
+                    AUTH_CONTROL_RADIUS,
                     active
-                      ? "bg-primary/10 border border-primary/15 text-foreground"
-                      : "text-muted-foreground hover:bg-white/[0.04] hover:text-foreground"
+                      ? "border border-white/[0.12] bg-white/[0.06] text-white"
+                      : "text-white/45 hover:bg-white/[0.04] hover:text-white/90"
                   )}
                 >
                   <Icon
                     className={cn(
                       "h-4 w-4 shrink-0",
-                      active && "text-primary"
+                      active ? "text-white" : "text-white/50"
                     )}
+                    strokeWidth={1.25}
                   />
                   {item.label}
                 </div>
@@ -98,9 +90,15 @@ export function MobileNav() {
           })}
         </nav>
 
-        <div className="mt-auto border-t border-border/20 px-3 py-4">
-          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-[oklch(0.60_0.20_25_/_0.08)] hover:text-[oklch(0.60_0.20_25)]">
-            <LockKeyhole className="h-4 w-4 shrink-0" />
+        <div className="mt-auto border-t border-white/[0.06] px-3 py-4">
+          <button
+            type="button"
+            className={cn(
+              "flex w-full items-center gap-3 px-3 py-3 text-sm font-medium text-white/45 transition-colors hover:bg-white/[0.04] hover:text-white/80",
+              AUTH_CONTROL_RADIUS
+            )}
+          >
+            <LockKeyhole className="h-4 w-4 shrink-0" strokeWidth={1.25} />
             Lock vault
           </button>
         </div>

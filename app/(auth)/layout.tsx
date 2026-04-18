@@ -72,8 +72,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           </motion.div>
           <h2 className="mb-3 text-3xl font-bold tracking-tight">Kryptex</h2>
           <p className="mx-auto max-w-xs text-sm leading-relaxed text-muted-foreground">
-            Your fortress in the cloud. Zero-knowledge encryption means only you
-            can access your secrets.
+            Sign in to pick up where you left off.
           </p>
         </motion.div>
       </div>
@@ -92,9 +91,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           </div>
           <div>
             <p className="text-base font-semibold tracking-tight">Kryptex</p>
-            <p className="text-xs text-muted-foreground">
-              Zero-knowledge vault
-            </p>
+            <p className="text-xs text-muted-foreground">Secure vault</p>
           </div>
         </motion.div>
 
@@ -111,16 +108,6 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
         </motion.main>
-
-        {/* Footer trust line */}
-        <motion.p
-          className="mt-6 text-center text-xs text-muted-foreground/60"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.4 }}
-        >
-          Your secrets are encrypted locally before they ever leave your device.
-        </motion.p>
       </div>
     </div>
   );
