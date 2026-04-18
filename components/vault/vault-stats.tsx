@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+"use client";
+
 import { ShieldCheck, KeyRound, Clock } from "lucide-react";
-import { Card } from "./card";
+import { StatCard } from "@/components/ui/stat-card";
 
 const items = [
   {
@@ -8,47 +9,38 @@ const items = [
     label: "Items secured",
     value: "128",
     hint: "All encrypted end-to-end in your browser.",
+    trend: { direction: "up" as const, label: "12 this week" },
   },
   {
     icon: KeyRound,
     label: "Reused passwords",
     value: "12",
-    hint: "Placeholder metric for future health checks.",
+    hint: "Passwords used across multiple services.",
+    trend: { direction: "down" as const, label: "3 fewer" },
   },
   {
     icon: Clock,
     label: "Last unlock",
     value: "3m ago",
-    hint: "Shows when you last decrypted your vault.",
+    hint: "Time since you last decrypted your vault.",
+    trend: { direction: "neutral" as const, label: "Active session" },
   },
 ];
 
 export function VaultStats() {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((item, index) => {
-        const Icon = item.icon;
-        return (
-          <motion.div
-            key={item.label}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05, duration: 0.2 }}
-          >
-            <Card title={item.label} description={item.hint}>
-              <div className="flex items-center justify-between">
-                <p className="text-2xl font-semibold tracking-tight">
-                  {item.value}
-                </p>
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <Icon className="h-4 w-4" />
-                </span>
-              </div>
-            </Card>
-          </motion.div>
-        );
-      })}
+      {items.map((item, index) => (
+        <StatCard
+          key={item.label}
+          icon={item.icon}
+          label={item.label}
+          value={item.value}
+          hint={item.hint}
+          trend={item.trend}
+          delay={index * 0.06}
+        />
+      ))}
     </div>
   );
 }
-

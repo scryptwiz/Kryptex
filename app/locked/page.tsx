@@ -1,50 +1,150 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Lock } from "lucide-react";
+import { Lock, Eye, EyeOff, Shield, AlertCircle } from "lucide-react";
+import { useState } from "react";
 
 export default function LockedPage() {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 px-4">
-      <div className="w-full max-w-sm rounded-3xl border border-slate-800 bg-slate-950/80 p-6 shadow-2xl shadow-slate-950/80 backdrop-blur-md sm:p-7">
-        <div className="mb-5 flex flex-col items-center gap-3 text-center">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-primary">
-            <Lock className="h-5 w-5" />
-          </span>
-          <div className="space-y-1">
-            <h1 className="text-xl font-semibold tracking-tight text-slate-50">
-              Vault locked
-            </h1>
-            <p className="text-xs text-slate-400 sm:text-sm">
-              For your security, the in‑memory vault key was wiped after
-              inactivity or manual lock. Enter your master password to continue.
-            </p>
-          </div>
-        </div>
+  const [showPassword, setShowPassword] = useState(false);
 
-        <div className="space-y-3">
-          <div className="space-y-1.5">
-            <Label htmlFor="unlock-password">Master password</Label>
-            <Input
-              id="unlock-password"
-              type="password"
-              autoComplete="current-password"
-              placeholder="Enter to unlock vault"
-            />
-          </div>
-          <Button className="mt-1 w-full">Unlock vault</Button>
-          <button className="w-full text-xs text-slate-400 underline-offset-2 hover:underline">
-            I forgot my master password
-          </button>
-        </div>
+  return (
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-auth-gradient px-4">
+      {/* Background decoration */}
+      <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.03] blur-[120px]" />
+
+      {/* Floating encrypted data particles (CSS-only) */}
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute font-mono text-[10px] text-primary/30"
+            style={{
+              left: `${15 + i * 15}%`,
+              top: `${10 + (i % 3) * 30}%`,
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 5 + i,
+              repeat: Infinity,
+              delay: i * 0.5,
+              ease: "easeInOut",
+            }}
+          >
+            {["0x4F...9A", "AES256", "SHA-256", "E2EE", "HMAC", "GCM"][i]}
+          </motion.div>
+        ))}
       </div>
-      <p className="mt-4 text-center text-xs text-slate-500">
-        Unlock attempts, successful and failed, will be logged in the audit log
-        once wired up.
-      </p>
+
+      {/* Lock card */}
+      <motion.div
+        className="relative z-10 w-full max-w-sm"
+        initial={{ opacity: 0, y: 20, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        <div className="glass-border">
+          <div className="glass-card-elevated p-6 sm:p-8">
+            {/* Lock icon */}
+            <div className="mb-6 flex flex-col items-center gap-4 text-center">
+              <motion.div
+                className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10"
+                animate={{ scale: [1, 1.04, 1] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Lock className="h-7 w-7 text-primary" />
+                {/* Glow ring */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl"
+                  animate={{
+                    boxShadow: [
+                      "0 0 0 0 oklch(0.65 0.25 270 / 0)",
+                      "0 0 20px 4px oklch(0.65 0.25 270 / 0.15)",
+                      "0 0 0 0 oklch(0.65 0.25 270 / 0)",
+                    ],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.div>
+
+              <div className="space-y-1.5">
+                <h1 className="text-xl font-bold tracking-tight">
+                  Vault locked
+                </h1>
+                <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                  For your security, the in-memory vault key was wiped after
+                  inactivity. Enter your master password to continue.
+                </p>
+              </div>
+            </div>
+
+            {/* Form */}
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="unlock-password">Master password</Label>
+                <div className="relative">
+                  <Input
+                    id="unlock-password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    placeholder="Enter to unlock vault"
+                    className="pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              <Button className="w-full gap-2">
+                <Shield className="h-4 w-4" />
+                Unlock vault
+              </Button>
+
+              <div className="flex items-center justify-center gap-1.5">
+                <AlertCircle className="h-3 w-3 text-muted-foreground/60" />
+                <button className="text-xs text-muted-foreground transition-colors hover:text-primary">
+                  I forgot my master password
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Footer */}
+      <motion.p
+        className="relative z-10 mt-6 text-center text-[11px] text-muted-foreground/50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7, duration: 0.4 }}
+      >
+        Unlock attempts, successful and failed, are logged in the audit trail.
+      </motion.p>
     </div>
   );
 }
-
